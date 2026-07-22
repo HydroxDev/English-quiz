@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แนวข้อสอบภาษาอังกฤษ Part B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5EFE1;
+    --paper-line:rgba(38,38,64,0.07);
+    --ink:#26263F;
+    --ink-soft:#5B5B7A;
+    --ink-faint:#8E8EA8;
+    --red:#B93B2C;
+    --red-soft:#F1D9D2;
+    --red-line:rgba(185,59,44,0.4);
+    --gold:#D9A441;
+    --gold-soft:#F6E7C4;
+    --radius:16px;
+    --shadow:0 12px 28px rgba(38,38,64,0.14);
+    --font-display:'Mali','Chonburi',cursive;
+    --font-body:'Sarabun','Noto Sans Thai',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:
+      repeating-linear-gradient(to bottom, transparent 0 30px, var(--paper-line) 30px 31px),
+      #EFE8D8;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding:24px 12px 48px;
+  }
+  .wrap{width:100%;max-width:480px;}
+  .page{
+    position:relative;
+    background:
+      repeating-linear-gradient(to bottom, transparent 0 30px, var(--paper-line) 30px 31px),
+      var(--paper);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:26px 22px 26px 40px;
+    overflow:hidden;
+    animation:fadeInUp .5s ease both;
+  }
+  .page::before{
+    content:"";
+    position:absolute;
+    left:26px;top:0;bottom:0;
+    width:2px;
+    background:var(--red-line);
+  }
+  .hole{
+    position:absolute;
+    left:9px;
+    width:9px;height:9px;
+    border-radius:50%;
+    background:#EFE8D8;
+    box-shadow:inset 0 1px 2px rgba(38,38,64,0.35);
+  }
+  .hole:nth-child(1){top:14%;}
+  .hole:nth-child(2){top:40%;}
+  .hole:nth-child(3){top:66%;}
+  .hole:nth-child(4){top:90%;}
+
+  h1,h2,h3{font-family:var(--font-display);margin:0;}
+  .eyebrow{
+    font-size:12.5px;
+    letter-spacing:.04em;
+    color:var(--red);
+    font-weight:600;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .muted{color:var(--ink-soft);}
+  .faint{color:var(--ink-faint);}
+
+  /* ---------- Intro ---------- */
+  .intro-icon{font-size:34px;line-height:1;margin-bottom:6px;}
+  .title{
+    font-size:27px;
+    font-weight:700;
+    line-height:1.25;
+    color:var(--ink);
+    position:relative;
+    display:inline-block;
+    margin-bottom:4px;
+  }
+  .title-underline{
+    display:block;
+    width:100%;
+    height:8px;
+    margin-top:2px;
+  }
+  .title-underline path{
+    fill:none;
+    stroke:var(--red);
+    stroke-width:3;
+    stroke-linecap:round;
+    stroke-dasharray:220;
+    stroke-dashoffset:220;
+    animation:drawline .7s .3s ease forwards;
+  }
+  .subtitle{font-size:14.5px;color:var(--ink-soft);margin-top:10px;line-height:1.6;}
+  .meta-row{
+    display:flex;
+    gap:10px;
+    margin:16px 0 20px;
+    flex-wrap:wrap;
+  }
+  .meta-chip{
+    font-size:12.5px;
+    padding:5px 11px;
+    border:1px solid var(--red-line);
+    border-radius:999px;
+    color:var(--red);
+    font-weight:600;
+    background:var(--red-soft);
+  }
+  .instructions{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    background:rgba(217,164,65,0.14);
+    border:1px dashed var(--gold);
+    border-radius:10px;
+    padding:12px 14px;
+    line-height:1.7;
+    margin-bottom:20px;
+  }
+  .word-bank{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.9;
+    margin-bottom:22px;
+  }
+  .word-bank b{color:var(--ink);font-family:var(--font-display);font-weight:600;}
+  .word-chip{
+    display:inline-block;
+    padding:2px 8px;
+    margin:2px 3px 2px 0;
+    background:rgba(38,38,64,0.05);
+    border-radius:6px;
+    font-size:12.5px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    width:100%;
+    border:none;
+    border-radius:12px;
+    padding:14px 18px;
+    font-family:var(--font-body);
+    font-size:15.5px;
+    font-weight:600;
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease, opacity .15s ease;
+  }
+  .btn:active{transform:scale(0.98);}
+  .btn:focus-visible{outline:2px dashed var(--red);outline-offset:3px;}
+  .btn-primary{
+    background:var(--red);
+    color:#FBF3EC;
+    box-shadow:0 6px 16px rgba(185,59,44,0.35);
+  }
+  .btn-primary:hover{box-shadow:0 8px 20px rgba(185,59,44,0.45);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink-soft);
+    border:1.5px solid rgba(38,38,64,0.18);
+  }
+
+  /* ---------- Quiz header ---------- */
+  .quiz-top{margin-bottom:16px;}
+  .quiz-top .eyebrow{margin-bottom:2px;}
+  .quiz-sub{font-size:12.5px;color:var(--ink-soft);margin-bottom:12px;}
+  .progress-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:4px;
+  }
+  .progress-track{
+    flex:1;
+    height:7px;
+    border-radius:999px;
+    background:rgba(38,38,64,0.08);
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--gold),var(--red));
+    transition:width .35s ease;
+  }
+  .progress-count{
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--ink-soft);
+    white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* ---------- Question ---------- */
+  .q-block{animation:fadeIn .3s ease both;}
+  .q-number{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:28px;height:28px;
+    border:2px solid var(--red);
+    border-radius:50%;
+    color:var(--red);
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:14px;
+    flex-shrink:0;
+  }
+  .q-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;}
+  .q-text{
+    font-size:16.5px;
+    line-height:1.6;
+    color:var(--ink);
+    padding-top:2px;
+  }
+  .q-text.define{font-style:italic;}
+  .blank{
+    display:inline-block;
+    min-width:64px;
+    border-bottom:2px dashed var(--red);
+    text-align:center;
+    color:var(--red);
+    font-weight:700;
+  }
+
+  .options{display:flex;flex-direction:column;gap:9px;margin-bottom:6px;}
+  .opt{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    width:100%;
+    text-align:left;
+    padding:12px 13px;
+    border-radius:11px;
+    border:1.5px solid rgba(38,38,64,0.14);
+    background:rgba(255,255,255,0.5);
+    font-family:var(--font-body);
+    font-size:15px;
+    color:var(--ink);
+    cursor:pointer;
+    transition:background .15s ease, border-color .15s ease, opacity .15s ease;
+  }
+  .opt:hover{border-color:rgba(38,38,64,0.3);}
+  .opt:focus-visible{outline:2px dashed var(--red);outline-offset:2px;}
+  .opt .letter{
+    width:24px;height:24px;
+    border-radius:50%;
+    background:rgba(38,38,64,0.08);
+    display:flex;align-items:center;justify-content:center;
+    font-size:12.5px;font-weight:700;
+    flex-shrink:0;
+    color:var(--ink-soft);
+  }
+  .opt .mark{margin-left:auto;flex-shrink:0;}
+  .opt[disabled]{cursor:default;}
+  .opt.correct{
+    background:var(--red-soft);
+    border-color:var(--red);
+    font-weight:700;
+  }
+  .opt.correct .letter{background:var(--red);color:#fff;}
+  .opt.wrong-pick{
+    background:rgba(38,38,64,0.04);
+    border-color:rgba(38,38,64,0.18);
+    text-decoration:line-through;
+    text-decoration-color:var(--red);
+    color:var(--ink-soft);
+  }
+  .opt.dim{opacity:.45;}
+
+  .mark svg{display:block;}
+  .mark path{
+    fill:none;
+    stroke:var(--red);
+    stroke-width:3;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-dasharray:40;
+    stroke-dashoffset:40;
+    animation:draw .4s ease forwards;
+  }
+
+  .feedback{
+    margin-top:14px;
+    padding:13px 15px;
+    background:rgba(217,164,65,0.12);
+    border-left:3px solid var(--gold);
+    border-radius:0 10px 10px 0;
+    animation:slideDown .25s ease both;
+  }
+  .feedback .fb-word{
+    font-family:var(--font-display);
+    font-size:16px;
+    font-weight:700;
+    color:var(--red);
+    transform:rotate(-0.6deg);
+    display:inline-block;
+  }
+  .feedback .fb-meaning{font-size:14px;color:var(--ink);margin:3px 0 6px;}
+  .feedback .fb-hint{font-size:13px;color:var(--ink-soft);line-height:1.6;}
+  .feedback .fb-status{
+    font-size:12.5px;
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .feedback.is-correct .fb-status{color:#4E7A4A;}
+  .feedback.is-wrong .fb-status{color:var(--red);}
+
+  .next-wrap{margin-top:18px;}
+
+  /* ---------- Transition ---------- */
+  .transition-emoji{font-size:36px;margin-bottom:8px;}
+  .transition-score{
+    font-family:var(--font-display);
+    font-size:40px;
+    font-weight:700;
+    color:var(--red);
+    margin:6px 0;
+  }
+
+  /* ---------- Result ---------- */
+  .ring{
+    width:150px;height:150px;
+    border-radius:50%;
+    margin:6px auto 14px;
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+  }
+  .ring-inner{
+    width:118px;height:118px;
+    border-radius:50%;
+    background:var(--paper);
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    box-shadow:inset 0 0 0 1px rgba(38,38,64,0.06);
+  }
+  .ring-num{font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--red);line-height:1;}
+  .ring-den{font-size:12px;color:var(--ink-soft);margin-top:2px;}
+  .result-comment{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink);
+    margin-bottom:18px;
+    line-height:1.6;
+  }
+  .breakdown{display:flex;gap:10px;margin-bottom:20px;}
+  .bd-card{
+    flex:1;
+    background:rgba(38,38,64,0.04);
+    border-radius:10px;
+    padding:10px 12px;
+    text-align:center;
+  }
+  .bd-card .bd-label{font-size:12px;color:var(--ink-soft);margin-bottom:3px;}
+  .bd-card .bd-score{font-family:var(--font-display);font-size:19px;font-weight:700;color:var(--ink);}
+
+  .review-toggle{
+    width:100%;
+    text-align:left;
+    background:none;
+    border:none;
+    border-top:1px solid rgba(38,38,64,0.12);
+    padding:14px 0 4px;
+    font-family:var(--font-display);
+    font-size:16px;
+    font-weight:600;
+    color:var(--ink);
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .review-list{display:flex;flex-direction:column;gap:8px;margin-top:10px;}
+  .review-item{
+    border-radius:10px;
+    padding:10px 12px;
+    background:rgba(255,255,255,0.5);
+    border:1px solid rgba(38,38,64,0.1);
+    font-size:13.5px;
+  }
+  .review-item.wrong{border-color:var(--red-line);background:var(--red-soft);}
+  .ri-top{display:flex;justify-content:space-between;gap:8px;align-items:baseline;}
+  .ri-word{font-family:var(--font-display);font-weight:700;color:var(--ink);}
+  .ri-status{font-size:11.5px;font-weight:700;}
+  .review-item.wrong .ri-status{color:var(--red);}
+  .review-item:not(.wrong) .ri-status{color:#4E7A4A;}
+  .ri-detail{color:var(--ink-soft);margin-top:4px;line-height:1.55;}
+
+  .footer-actions{margin-top:22px;display:flex;flex-direction:column;gap:10px;}
+
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  @keyframes slideDown{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes drawline{to{stroke-dashoffset:0;}}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001s !important; animation-delay:0s !important; transition-duration:.001s !important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page" id="page">
+    <span class="hole"></span><span class="hole"></span><span class="hole"></span><span class="hole"></span>
+    <div id="app"></div>
+  </div>
+</div>
+
+<script>
+/* ---------------- Data ---------------- */
+const QUESTIONS = [
+  // ---- Part 1: Matching Definitions (1-16) ----
+  {part:1, type:"define", prompt:"very large in size, amount, or number",
+   options:{"ก":"massive","ข":"museum","ค":"leisure","ง":"awkward"}, answer:"ก",
+   word:"massive", meaningTH:"ใหญ่ยักษ์ / มหึมา", hint:"สังเกตจาก: very large"},
+  {part:1, type:"define", prompt:"a style of cooking from a particular country or region",
+   options:{"ก":"gather","ข":"cuisine","ค":"tempting","ง":"amused"}, answer:"ข",
+   word:"cuisine", meaningTH:"อาหาร / รูปแบบการทำอาหาร", hint:"สังเกตจาก: style of cooking"},
+  {part:1, type:"define", prompt:"time when you are not working and can relax",
+   options:{"ก":"leisure","ข":"allowed","ค":"attended","ง":"joyful"}, answer:"ก",
+   word:"leisure", meaningTH:"เวลาว่าง", hint:"สังเกตจาก: time to relax"},
+  {part:1, type:"define", prompt:"to come together in a group",
+   options:{"ก":"ignored","ข":"gather","ค":"impressive","ง":"regretful"}, answer:"ข",
+   word:"gather", meaningTH:"รวมตัว", hint:"สังเกตจาก: come together"},
+  {part:1, type:"define", prompt:"something that makes you want to have it or do it, even if you shouldn't",
+   options:{"ก":"jealous","ข":"impressed","ค":"tempting","ง":"massive"}, answer:"ค",
+   word:"tempting", meaningTH:"ล่อใจ / น่าดึงดูด", hint:"สังเกตจาก: makes you want it"},
+  {part:1, type:"define", prompt:"permitted or given permission to do something",
+   options:{"ก":"allowed","ข":"awkward","ค":"cuisine","ง":"museum"}, answer:"ก",
+   word:"allowed", meaningTH:"ได้รับอนุญาต", hint:"สังเกตจาก: permitted"},
+  {part:1, type:"define", prompt:"a building where historical, artistic, or scientific objects are kept",
+   options:{"ก":"leisure","ข":"museum","ค":"gather","ง":"massive"}, answer:"ข",
+   word:"museum", meaningTH:"พิพิธภัณฑ์", hint:"สังเกตจาก: building for historical objects"},
+  {part:1, type:"define", prompt:"deserving admiration because it is very good or large",
+   options:{"ก":"ignored","ข":"impressive","ค":"jealous","ง":"regretful"}, answer:"ข",
+   word:"impressive", meaningTH:"น่าประทับใจ / ยอดเยี่ยม", hint:"สังเกตจาก: deserving admiration"},
+  {part:1, type:"define", prompt:"feeling unhappy because you want what someone else has",
+   options:{"ก":"jealous","ข":"joyful","ค":"amused","ง":"impressed"}, answer:"ก",
+   word:"jealous", meaningTH:"อิจฉา", hint:"สังเกตจาก: want what someone else has"},
+  {part:1, type:"define", prompt:"feeling sorry about something you did or did not do in the past",
+   options:{"ก":"awkward","ข":"regretful","ค":"allowed","ง":"tempting"}, answer:"ข",
+   word:"regretful", meaningTH:"เสียใจ / เสียดายที่ทำพลาดไป", hint:"สังเกตจาก: feeling sorry about the past"},
+  {part:1, type:"define", prompt:"feeling admiration or respect for someone or something",
+   options:{"ก":"impressed","ข":"ignored","ค":"massive","ง":"gather"}, answer:"ก",
+   word:"impressed", meaningTH:"รู้สึกประทับใจ", hint:"สังเกตจาก: feeling admiration"},
+  {part:1, type:"define", prompt:"to go to or be present at an event like a meeting or party",
+   options:{"ก":"leisure","ข":"attended","ค":"cuisine","ง":"museum"}, answer:"ข",
+   word:"attended", meaningTH:"เข้าร่วม", hint:"สังเกตจาก: go to an event"},
+  {part:1, type:"define", prompt:"feeling embarrassed, uncomfortable, or clumsy",
+   options:{"ก":"joyful","ข":"amused","ค":"awkward","ง":"impressive"}, answer:"ค",
+   word:"awkward", meaningTH:"น่าอึดอัด / ทำตัวไม่ถูก", hint:"สังเกตจาก: feeling embarrassed/uncomfortable"},
+  {part:1, type:"define", prompt:"feeling or showing great happiness",
+   options:{"ก":"joyful","ข":"jealous","ค":"regretful","ง":"ignored"}, answer:"ก",
+   word:"joyful", meaningTH:"มีความสุขมาก", hint:"สังเกตจาก: great happiness"},
+  {part:1, type:"define", prompt:"thinking that something is funny or entertaining",
+   options:{"ก":"impressed","ข":"massive","ค":"amused","ง":"tempting"}, answer:"ค",
+   word:"amused", meaningTH:"ขบขัน / สนุกสนาน", hint:"สังเกตจาก: thinking something is funny"},
+  {part:1, type:"define", prompt:"paid no attention to someone or something",
+   options:{"ก":"ignored","ข":"allowed","ค":"gather","ง":"cuisine"}, answer:"ก",
+   word:"ignored", meaningTH:"เพิกเฉย / ไม่สนใจ", hint:"สังเกตจาก: paid no attention"},
+
+  // ---- Part 2: Sentence Completion (17-32) ----
+  {part:2, type:"blank", prompt:"The blue whale is a {blank} animal; it is the biggest creature on Earth.",
+   options:{"ก":"massive","ข":"awkward","ค":"jealous","ง":"amused"}, answer:"ก",
+   word:"massive", meaningTH:"ใหญ่โตมาก", hint:"สังเกตจาก: biggest creature on Earth"},
+  {part:2, type:"blank", prompt:"My sister loves Thai {blank} because she likes spicy food and herbs.",
+   options:{"ก":"leisure","ข":"museum","ค":"cuisine","ง":"tempting"}, answer:"ค",
+   word:"cuisine", meaningTH:"อาหารชื่อดัง", hint:"สังเกตจาก: Thai food, spicy food"},
+  {part:2, type:"blank", prompt:"Reading and swimming are my favorite {blank} activities on the weekend.",
+   options:{"ก":"leisure","ข":"massive","ค":"allowed","ง":"impressive"}, answer:"ก",
+   word:"leisure", meaningTH:"กิจกรรมยามว่าง", hint:"สังเกตจาก: on the weekend"},
+  {part:2, type:"blank", prompt:"Let's {blank} at the central park at 5 PM to talk about our group project.",
+   options:{"ก":"ignore","ข":"gather","ค":"attend","ง":"regret"}, answer:"ข",
+   word:"gather", meaningTH:"รวมตัวกัน", hint:"สังเกตจาก: at the park, to talk about a project"},
+  {part:2, type:"blank", prompt:"That chocolate cake looks very {blank}! I really want to eat a piece.",
+   options:{"ก":"massive","ข":"awkward","ค":"tempting","ง":"jealous"}, answer:"ค",
+   word:"tempting", meaningTH:"น่ากิน / ยั่วยวนใจ", hint:"สังเกตจาก: chocolate cake, want to eat"},
+  {part:2, type:"blank", prompt:"Students are not {blank} to use mobile phones during the examination.",
+   options:{"ก":"allowed","ข":"attended","ค":"impressed","ง":"joyful"}, answer:"ก",
+   word:"allowed", meaningTH:"ได้รับอนุญาต", hint:"สังเกตจาก: not... to use mobile phones"},
+  {part:2, type:"blank", prompt:"We saw old dinosaur bones and ancient gold at the national {blank}.",
+   options:{"ก":"museum","ข":"cuisine","ค":"leisure","ง":"gather"}, answer:"ก",
+   word:"museum", meaningTH:"พิพิธภัณฑ์", hint:"สังเกตจาก: dinosaur bones, ancient gold"},
+  {part:2, type:"blank", prompt:"Her piano performance was very {blank}; everyone stood up and clapped.",
+   options:{"ก":"ignored","ข":"impressive","ค":"awkward","ง":"regretful"}, answer:"ข",
+   word:"impressive", meaningTH:"น่าประทับใจมาก", hint:"สังเกตจาก: everyone stood up and clapped"},
+  {part:2, type:"blank", prompt:"He felt {blank} because his friend got a brand new iPhone for his birthday.",
+   options:{"ก":"jealous","ข":"joyful","ค":"massive","ง":"allowed"}, answer:"ก",
+   word:"jealous", meaningTH:"อิจฉา", hint:"สังเกตจาก: friend got a brand new iPhone"},
+  {part:2, type:"blank", prompt:"I feel {blank} that I didn't study harder for the English test last week.",
+   options:{"ก":"amused","ข":"regretful","ค":"impressed","ง":"tempting"}, answer:"ข",
+   word:"regretful", meaningTH:"รู้สึกเสียดาย / เสียใจ", hint:"สังเกตจาก: didn't study harder"},
+  {part:2, type:"blank", prompt:"The teacher was {blank} with my homework because I did a great job.",
+   options:{"ก":"impressed","ข":"ignored","ค":"massive","ง":"jealous"}, answer:"ก",
+   word:"impressed", meaningTH:"รู้สึกประทับใจ", hint:"สังเกตจาก: did a great job"},
+  {part:2, type:"blank", prompt:"More than 100 people {blank} the wedding ceremony yesterday.",
+   options:{"ก":"leisure","ข":"gather","ค":"attended","ง":"museum"}, answer:"ค",
+   word:"attended", meaningTH:"ไปเข้าร่วมงาน", hint:"สังเกตจาก: wedding ceremony"},
+  {part:2, type:"blank", prompt:"It was {blank} when I forgot his name while I was talking to him.",
+   options:{"ก":"joyful","ข":"awkward","ค":"massive","ง":"impressive"}, answer:"ข",
+   word:"awkward", meaningTH:"อึดอัด / ทำตัวไม่ถูก", hint:"สังเกตจาก: forgot his name"},
+  {part:2, type:"blank", prompt:"The children were {blank} and laughed loudly while playing in the park.",
+   options:{"ก":"joyful","ข":"regretful","ค":"ignored","ง":"awkward"}, answer:"ก",
+   word:"joyful", meaningTH:"ร่าเริง / มีความสุข", hint:"สังเกตจาก: laughed loudly"},
+  {part:2, type:"blank", prompt:"I was {blank} by the funny cat videos on TikTok. They made me smile.",
+   options:{"ก":"amused","ข":"jealous","ค":"massive","ง":"allowed"}, answer:"ก",
+   word:"amused", meaningTH:"รู้สึกขำ / ตลก", hint:"สังเกตจาก: funny cat videos"},
+  {part:2, type:"blank", prompt:"He felt sad because his friends {blank} his messages and did not reply.",
+   options:{"ก":"attended","ข":"gathered","ค":"ignored","ง":"impressed"}, answer:"ค",
+   word:"ignored", meaningTH:"เมิน / ไม่สนใจ", hint:"สังเกตจาก: did not reply"}
+];
+const TOTAL = QUESTIONS.length;
+const LETTERS = ["ก","ข","ค","ง"];
+
+/* ---------------- State ---------------- */
+let state = {
+  screen:"intro",
+  index:0,
+  answers:new Array(TOTAL).fill(null),
+  showReview:false
+};
+
+const app = document.getElementById("app");
+
+/* ---------------- Icons ---------------- */
+function checkSVG(){
+  return '<span class="mark"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M4 10.5 L8.2 15 L16 5"/></svg></span>';
+}
+function crossSVG(){
+  return '<span class="mark"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M5 5 L15 15 M15 5 L5 15"/></svg></span>';
+}
+
+/* ---------------- Helpers ---------------- */
+function escapeHTML(str){
+  return str.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+}
+function renderPrompt(q){
+  if(q.type === "define"){
+    return '<p class="q-text define">“' + escapeHTML(q.prompt) + '”</p>';
+  }
+  const parts = q.prompt.split("{blank}");
+  const safe = parts.map(escapeHTML);
+  return '<p class="q-text">' + safe.join('<span class="blank">______</span>') + '</p>';
+}
+function sectionLabel(part){
+  return part === 1
+    ? "ตอนที่ 1 · จับคู่ความหมาย (Matching Definitions)"
+    : "ตอนที่ 2 · เติมคำในช่องว่าง (Sentence Completion)";
+}
+function sectionInstruction(part){
+  return part === 1
+    ? "เลือกคำศัพท์ที่มีความหมายตรงกับคำอธิบายภาษาอังกฤษด้านล่าง"
+    : "เลือกคำที่เหมาะสมที่สุดเพื่อเติมประโยคให้สมบูรณ์";
+}
+function computeScore(upTo){
+  let s = 0;
+  for(let i=0;i<upTo;i++){
+    if(state.answers[i] === QUESTIONS[i].answer) s++;
+  }
+  return s;
+}
+
+/* ---------------- Renderers ---------------- */
+function renderIntro(){
+  app.innerHTML = `
+    <div class="intro-icon">📝</div>
+    <h1 class="title">แนวข้อสอบภาษาอังกฤษ Part B</h1>
+    <svg class="title-underline" viewBox="0 0 220 8" preserveAspectRatio="none">
+      <path d="M2 5 Q 60 1, 110 5 T 218 4"/>
+    </svg>
+    <p class="subtitle">Vocabulary &amp; Context · ระดับชั้นมัธยมศึกษาปีที่ 5<br>สำหรับทบทวนก่อนสอบกลางภาค</p>
+    <div class="meta-row">
+      <span class="meta-chip">32 ข้อ</span>
+      <span class="meta-chip">16 คำศัพท์</span>
+      <span class="meta-chip">2 ตอน</span>
+    </div>
+    <div class="instructions">
+      <b>ตอนที่ 1</b> — เลือกคำศัพท์ที่ตรงกับคำอธิบายภาษาอังกฤษ (16 ข้อ)<br>
+      <b>ตอนที่ 2</b> — เลือกคำเติมประโยคให้สมบูรณ์ (16 ข้อ)<br>
+      ตอบแล้วจะเห็นเฉลยและคำอธิบายภาษาไทยทันที
+    </div>
+    <div class="word-bank">
+      <b>คำศัพท์ในชุดนี้</b><br>
+      ${QUESTIONS.slice(0,16).map(q=>`<span class="word-chip">${q.word}</span>`).join("")}
+    </div>
+    <button class="btn btn-primary" data-action="start">เริ่มทำข้อสอบ →</button>
+  `;
+}
+
+function renderQuiz(){
+  const i = state.index;
+  const q = QUESTIONS[i];
+  const answered = state.answers[i];
+  const answeredCount = state.answers.filter(a=>a!==null).length;
+  const pct = Math.round((answeredCount/TOTAL)*100);
+
+  let optionsHTML = "";
+  LETTERS.forEach(letter=>{
+    const text = q.options[letter];
+    let cls = "opt";
+    let mark = "";
+    let disabledAttr = "";
+    if(answered){
+      disabledAttr = "disabled";
+      if(letter === q.answer){
+        cls += " correct";
+        mark = checkSVG();
+      } else if(letter === answered){
+        cls += " wrong-pick";
+        mark = crossSVG();
+      } else {
+        cls += " dim";
+      }
+    }
+    optionsHTML += `
+      <button class="${cls}" data-action="answer" data-letter="${letter}" ${disabledAttr}>
+        <span class="letter">${letter}</span>
+        <span>${escapeHTML(text)}</span>
+        ${mark}
+      </button>`;
+  });
+
+  let feedbackHTML = "";
+  if(answered){
+    const isCorrect = answered === q.answer;
+    feedbackHTML = `
+      <div class="feedback ${isCorrect ? "is-correct" : "is-wrong"}">
+        <div class="fb-status">${isCorrect ? "✓ ถูกต้อง!" : "✗ ยังไม่ถูก คำตอบที่ถูกคือ " + q.answer + ". " + q.word}</div>
+        <span class="fb-word">${q.word}</span>
+        <p class="fb-meaning">${q.meaningTH}</p>
+        <p class="fb-hint">${q.hint}</p>
+      </div>
+      <div class="next-wrap">
+        <button class="btn btn-primary" data-action="next">${i === TOTAL-1 ? "ดูผลคะแนน →" : "ข้อถัดไป →"}</button>
+      </div>
+    `;
+  }
+
+  app.innerHTML = `
+    <div class="quiz-top">
+      <div class="eyebrow">${sectionLabel(q.part)}</div>
+      <div class="quiz-sub">${sectionInstruction(q.part)}</div>
+      <div class="progress-row">
+        <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+        <div class="progress-count">${i+1} / ${TOTAL}</div>
+      </div>
+    </div>
+    <div class="q-block">
+      <div class="q-head">
+        <span class="q-number">${i+1}</span>
+        ${renderPrompt(q)}
+      </div>
+      <div class="options">${optionsHTML}</div>
+      ${feedbackHTML}
+    </div>
+  `;
+}
+
+function renderTransition(){
+  const score1 = computeScore(16);
+  app.innerHTML = `
+    <div style="text-align:center;padding:10px 0;">
+      <div class="transition-emoji">🎉</div>
+      <div class="eyebrow" style="justify-content:center;">จบตอนที่ 1 แล้ว</div>
+      <div class="transition-score">${score1} / 16</div>
+      <p class="muted" style="font-size:14px;line-height:1.6;">
+        คะแนนตอนที่ 1: จับคู่ความหมาย<br>
+        ต่อไปเป็น <b>ตอนที่ 2 · เติมคำในช่องว่าง</b> อีก 16 ข้อ
+      </p>
+      <button class="btn btn-primary" style="margin-top:14px;" data-action="continue-part2">ไปต่อตอนที่ 2 →</button>
+    </div>
+  `;
+}
+
+function renderResult(){
+  const score1 = computeScore(16);
+  const score2 = computeScore(32) - score1;
+  const total = score1 + score2;
+  const pct = Math.round((total/TOTAL)*100);
+
+  let comment;
+  if(pct >= 90) comment = "ยอดเยี่ยมมาก! คำศัพท์ชุดนี้แม่นแล้ว พร้อมสอบกลางภาคแน่นอน 🎉";
+  else if(pct >= 70) comment = "ดีมาก! เหลืออีกไม่กี่คำ ลองทบทวนข้อที่ตอบผิดอีกครั้งนะ";
+  else if(pct >= 50) comment = "พอใช้ได้ ลองกลับไปทบทวนคำศัพท์ที่ยังไม่แม่นอีกรอบ";
+  else comment = "ยังไม่แม่นเท่าไหร่ ลองทบทวนความหมายคำศัพท์แล้วกลับมาทำใหม่นะ สู้ๆ!";
+
+  let reviewHTML = "";
+  QUESTIONS.forEach((q,idx)=>{
+    const userAns = state.answers[idx];
+    const correct = userAns === q.answer;
+    reviewHTML += `
+      <div class="review-item ${correct ? "" : "wrong"}">
+        <div class="ri-top">
+          <span class="ri-word">${idx+1}. ${q.word}</span>
+          <span class="ri-status">${correct ? "✓ ถูก" : "✗ ผิด (ตอบ " + (userAns || "-") + ")"}</span>
+        </div>
+        <div class="ri-detail">${q.meaningTH} — ${q.hint}</div>
+      </div>
+    `;
+  });
+
+  app.innerHTML = `
+    <div class="eyebrow" style="justify-content:center;">ผลคะแนนรวม</div>
+    <div class="ring" style="background:conic-gradient(var(--red) ${pct}%, rgba(38,38,64,0.1) 0);">
+      <div class="ring-inner">
+        <div class="ring-num">${total}</div>
+        <div class="ring-den">จาก ${TOTAL} ข้อ</div>
+      </div>
+    </div>
+    <p class="result-comment">${comment}</p>
+    <div class="breakdown">
+      <div class="bd-card">
+        <div class="bd-label">ตอนที่ 1 · ความหมาย</div>
+        <div class="bd-score">${score1}/16</div>
+      </div>
+      <div class="bd-card">
+        <div class="bd-label">ตอนที่ 2 · เติมคำ</div>
+        <div class="bd-score">${score2}/16</div>
+      </div>
+    </div>
+    <button class="review-toggle" data-action="toggle-review">
+      <span>${state.showReview ? "ซ่อน" : "ดู"}เฉลยทั้งหมด 32 ข้อ</span>
+      <span>${state.showReview ? "▲" : "▼"}</span>
+    </button>
+    ${state.showReview ? `<div class="review-list">${reviewHTML}</div>` : ""}
+    <div class="footer-actions">
+      <button class="btn btn-primary" data-action="restart">ทำข้อสอบใหม่อีกครั้ง ↺</button>
+    </div>
+  `;
+}
+
+function render(){
+  if(state.screen === "intro") renderIntro();
+  else if(state.screen === "quiz") renderQuiz();
+  else if(state.screen === "transition") renderTransition();
+  else if(state.screen === "result") renderResult();
+}
+
+/* ---------------- Events ---------------- */
+app.addEventListener("click", (e)=>{
+  const el = e.target.closest("[data-action]");
+  if(!el) return;
+  const action = el.dataset.action;
+
+  if(action === "start"){
+    state.screen = "quiz";
+    state.index = 0;
+    render();
+  } else if(action === "answer"){
+    if(state.answers[state.index] !== null) return;
+    state.answers[state.index] = el.dataset.letter;
+    render();
+  } else if(action === "next"){
+    if(state.index === 15){
+      state.screen = "transition";
+    } else if(state.index === TOTAL-1){
+      state.screen = "result";
+    } else {
+      state.index++;
+    }
+    render();
+  } else if(action === "continue-part2"){
+    state.index = 16;
+    state.screen = "quiz";
+    render();
+  } else if(action === "toggle-review"){
+    state.showReview = !state.showReview;
+    render();
+  } else if(action === "restart"){
+    state = {screen:"intro", index:0, answers:new Array(TOTAL).fill(null), showReview:false};
+    render();
+  }
+  document.getElementById("page").scrollIntoView({behavior:"smooth", block:"start"});
+});
+
+render();
+</script>
+</body>
+</html>
