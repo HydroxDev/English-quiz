@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แนวข้อสอบภาษาอังกฤษ Part A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5EFE1;
+    --paper-line:rgba(38,38,64,0.07);
+    --ink:#26263F;
+    --ink-soft:#5B5B7A;
+    --ink-faint:#8E8EA8;
+    --red:#B93B2C;
+    --red-soft:#F1D9D2;
+    --red-line:rgba(185,59,44,0.4);
+    --gold:#D9A441;
+    --gold-soft:#F6E7C4;
+    --radius:16px;
+    --shadow:0 12px 28px rgba(38,38,64,0.14);
+    --font-display:'Mali','Chonburi',cursive;
+    --font-body:'Sarabun','Noto Sans Thai',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:
+      repeating-linear-gradient(to bottom, transparent 0 30px, var(--paper-line) 30px 31px),
+      #EFE8D8;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding:24px 12px 48px;
+  }
+  .wrap{width:100%;max-width:480px;}
+  .page{
+    position:relative;
+    background:
+      repeating-linear-gradient(to bottom, transparent 0 30px, var(--paper-line) 30px 31px),
+      var(--paper);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:26px 22px 26px 40px;
+    overflow:hidden;
+    animation:fadeInUp .5s ease both;
+  }
+  .page::before{
+    content:"";
+    position:absolute;
+    left:26px;top:0;bottom:0;
+    width:2px;
+    background:var(--red-line);
+  }
+  .hole{
+    position:absolute;
+    left:9px;
+    width:9px;height:9px;
+    border-radius:50%;
+    background:#EFE8D8;
+    box-shadow:inset 0 1px 2px rgba(38,38,64,0.35);
+  }
+  .hole:nth-child(1){top:14%;}
+  .hole:nth-child(2){top:40%;}
+  .hole:nth-child(3){top:66%;}
+  .hole:nth-child(4){top:90%;}
+
+  h1,h2,h3{font-family:var(--font-display);margin:0;}
+  .eyebrow{
+    font-size:12.5px;
+    letter-spacing:.04em;
+    color:var(--red);
+    font-weight:600;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .muted{color:var(--ink-soft);}
+  .faint{color:var(--ink-faint);}
+
+  /* ---------- Intro ---------- */
+  .intro-icon{font-size:34px;line-height:1;margin-bottom:6px;}
+  .title{
+    font-size:27px;
+    font-weight:700;
+    line-height:1.25;
+    color:var(--ink);
+    position:relative;
+    display:inline-block;
+    margin-bottom:4px;
+  }
+  .title-underline{
+    display:block;
+    width:100%;
+    height:8px;
+    margin-top:2px;
+  }
+  .title-underline path{
+    fill:none;
+    stroke:var(--red);
+    stroke-width:3;
+    stroke-linecap:round;
+    stroke-dasharray:220;
+    stroke-dashoffset:220;
+    animation:drawline .7s .3s ease forwards;
+  }
+  .subtitle{font-size:14.5px;color:var(--ink-soft);margin-top:10px;line-height:1.6;}
+  .meta-row{
+    display:flex;
+    gap:10px;
+    margin:16px 0 20px;
+    flex-wrap:wrap;
+  }
+  .meta-chip{
+    font-size:12.5px;
+    padding:5px 11px;
+    border:1px solid var(--red-line);
+    border-radius:999px;
+    color:var(--red);
+    font-weight:600;
+    background:var(--red-soft);
+  }
+  .instructions{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    background:rgba(217,164,65,0.14);
+    border:1px dashed var(--gold);
+    border-radius:10px;
+    padding:12px 14px;
+    line-height:1.7;
+    margin-bottom:20px;
+  }
+  .word-bank{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.9;
+    margin-bottom:22px;
+  }
+  .word-bank b{color:var(--ink);font-family:var(--font-display);font-weight:600;}
+  .word-chip{
+    display:inline-block;
+    padding:2px 8px;
+    margin:2px 3px 2px 0;
+    background:rgba(38,38,64,0.05);
+    border-radius:6px;
+    font-size:12.5px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    width:100%;
+    border:none;
+    border-radius:12px;
+    padding:14px 18px;
+    font-family:var(--font-body);
+    font-size:15.5px;
+    font-weight:600;
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease, opacity .15s ease;
+  }
+  .btn:active{transform:scale(0.98);}
+  .btn:focus-visible{outline:2px dashed var(--red);outline-offset:3px;}
+  .btn-primary{
+    background:var(--red);
+    color:#FBF3EC;
+    box-shadow:0 6px 16px rgba(185,59,44,0.35);
+  }
+  .btn-primary:hover{box-shadow:0 8px 20px rgba(185,59,44,0.45);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink-soft);
+    border:1.5px solid rgba(38,38,64,0.18);
+  }
+
+  /* ---------- Quiz header ---------- */
+  .quiz-top{margin-bottom:16px;}
+  .quiz-top .eyebrow{margin-bottom:2px;}
+  .quiz-sub{font-size:12.5px;color:var(--ink-soft);margin-bottom:12px;}
+  .progress-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:4px;
+  }
+  .progress-track{
+    flex:1;
+    height:7px;
+    border-radius:999px;
+    background:rgba(38,38,64,0.08);
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--gold),var(--red));
+    transition:width .35s ease;
+  }
+  .progress-count{
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--ink-soft);
+    white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* ---------- Question ---------- */
+  .q-block{animation:fadeIn .3s ease both;}
+  .q-number{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:28px;height:28px;
+    border:2px solid var(--red);
+    border-radius:50%;
+    color:var(--red);
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:14px;
+    flex-shrink:0;
+  }
+  .q-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;}
+  .q-text{
+    font-size:16.5px;
+    line-height:1.6;
+    color:var(--ink);
+    padding-top:2px;
+  }
+  .q-text.define{font-style:italic;}
+  .blank{
+    display:inline-block;
+    min-width:64px;
+    border-bottom:2px dashed var(--red);
+    text-align:center;
+    color:var(--red);
+    font-weight:700;
+  }
+
+  .options{display:flex;flex-direction:column;gap:9px;margin-bottom:6px;}
+  .opt{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    width:100%;
+    text-align:left;
+    padding:12px 13px;
+    border-radius:11px;
+    border:1.5px solid rgba(38,38,64,0.14);
+    background:rgba(255,255,255,0.5);
+    font-family:var(--font-body);
+    font-size:15px;
+    color:var(--ink);
+    cursor:pointer;
+    transition:background .15s ease, border-color .15s ease, opacity .15s ease;
+  }
+  .opt:hover{border-color:rgba(38,38,64,0.3);}
+  .opt:focus-visible{outline:2px dashed var(--red);outline-offset:2px;}
+  .opt .letter{
+    width:24px;height:24px;
+    border-radius:50%;
+    background:rgba(38,38,64,0.08);
+    display:flex;align-items:center;justify-content:center;
+    font-size:12.5px;font-weight:700;
+    flex-shrink:0;
+    color:var(--ink-soft);
+  }
+  .opt .mark{margin-left:auto;flex-shrink:0;}
+  .opt[disabled]{cursor:default;}
+  .opt.correct{
+    background:var(--red-soft);
+    border-color:var(--red);
+    font-weight:700;
+  }
+  .opt.correct .letter{background:var(--red);color:#fff;}
+  .opt.wrong-pick{
+    background:rgba(38,38,64,0.04);
+    border-color:rgba(38,38,64,0.18);
+    text-decoration:line-through;
+    text-decoration-color:var(--red);
+    color:var(--ink-soft);
+  }
+  .opt.dim{opacity:.45;}
+
+  .mark svg{display:block;}
+  .mark path{
+    fill:none;
+    stroke:var(--red);
+    stroke-width:3;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-dasharray:40;
+    stroke-dashoffset:40;
+    animation:draw .4s ease forwards;
+  }
+
+  .feedback{
+    margin-top:14px;
+    padding:13px 15px;
+    background:rgba(217,164,65,0.12);
+    border-left:3px solid var(--gold);
+    border-radius:0 10px 10px 0;
+    animation:slideDown .25s ease both;
+  }
+  .feedback .fb-word{
+    font-family:var(--font-display);
+    font-size:16px;
+    font-weight:700;
+    color:var(--red);
+    transform:rotate(-0.6deg);
+    display:inline-block;
+  }
+  .feedback .fb-meaning{font-size:14px;color:var(--ink);margin:3px 0 6px;}
+  .feedback .fb-hint{font-size:13px;color:var(--ink-soft);line-height:1.6;}
+  .feedback .fb-status{
+    font-size:12.5px;
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .feedback.is-correct .fb-status{color:#4E7A4A;}
+  .feedback.is-wrong .fb-status{color:var(--red);}
+
+  .next-wrap{margin-top:18px;}
+
+  /* ---------- Transition ---------- */
+  .transition-emoji{font-size:36px;margin-bottom:8px;}
+  .transition-score{
+    font-family:var(--font-display);
+    font-size:40px;
+    font-weight:700;
+    color:var(--red);
+    margin:6px 0;
+  }
+
+  /* ---------- Result ---------- */
+  .ring{
+    width:150px;height:150px;
+    border-radius:50%;
+    margin:6px auto 14px;
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+  }
+  .ring-inner{
+    width:118px;height:118px;
+    border-radius:50%;
+    background:var(--paper);
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    box-shadow:inset 0 0 0 1px rgba(38,38,64,0.06);
+  }
+  .ring-num{font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--red);line-height:1;}
+  .ring-den{font-size:12px;color:var(--ink-soft);margin-top:2px;}
+  .result-comment{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink);
+    margin-bottom:18px;
+    line-height:1.6;
+  }
+  .breakdown{display:flex;gap:10px;margin-bottom:20px;}
+  .bd-card{
+    flex:1;
+    background:rgba(38,38,64,0.04);
+    border-radius:10px;
+    padding:10px 12px;
+    text-align:center;
+  }
+  .bd-card .bd-label{font-size:12px;color:var(--ink-soft);margin-bottom:3px;}
+  .bd-card .bd-score{font-family:var(--font-display);font-size:19px;font-weight:700;color:var(--ink);}
+
+  .review-toggle{
+    width:100%;
+    text-align:left;
+    background:none;
+    border:none;
+    border-top:1px solid rgba(38,38,64,0.12);
+    padding:14px 0 4px;
+    font-family:var(--font-display);
+    font-size:16px;
+    font-weight:600;
+    color:var(--ink);
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .review-list{display:flex;flex-direction:column;gap:8px;margin-top:10px;}
+  .review-item{
+    border-radius:10px;
+    padding:10px 12px;
+    background:rgba(255,255,255,0.5);
+    border:1px solid rgba(38,38,64,0.1);
+    font-size:13.5px;
+  }
+  .review-item.wrong{border-color:var(--red-line);background:var(--red-soft);}
+  .ri-top{display:flex;justify-content:space-between;gap:8px;align-items:baseline;}
+  .ri-word{font-family:var(--font-display);font-weight:700;color:var(--ink);}
+  .ri-status{font-size:11.5px;font-weight:700;}
+  .review-item.wrong .ri-status{color:var(--red);}
+  .review-item:not(.wrong) .ri-status{color:#4E7A4A;}
+  .ri-detail{color:var(--ink-soft);margin-top:4px;line-height:1.55;}
+
+  .footer-actions{margin-top:22px;display:flex;flex-direction:column;gap:10px;}
+
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  @keyframes slideDown{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes drawline{to{stroke-dashoffset:0;}}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001s !important; animation-delay:0s !important; transition-duration:.001s !important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page" id="page">
+    <span class="hole"></span><span class="hole"></span><span class="hole"></span><span class="hole"></span>
+    <div id="app"></div>
+  </div>
+</div>
+
+<script>
+/* ---------------- Data ---------------- */
+const QUESTIONS = [
+  // ---- Part 1: Matching Definitions (1-16) ----
+  {part:1, type:"define", prompt:"happening or beginning a short time ago",
+   options:{"ก":"recent","ข":"category","ค":"outdoor","ง":"pastime"}, answer:"ก",
+   word:"recent", meaningTH:"ล่าสุด / เมื่อเร็วๆ นี้", hint:"สังเกตจาก: a short time ago"},
+  {part:1, type:"define", prompt:"a group of people or things that are similar",
+   options:{"ก":"target","ข":"category","ค":"endurance","ง":"interest"}, answer:"ข",
+   word:"category", meaningTH:"ประเภท / หมวดหมู่", hint:"สังเกตจาก: a group of similar things"},
+  {part:1, type:"define", prompt:"outside",
+   options:{"ก":"outdoor","ข":"avid","ค":"recent","ง":"pastime"}, answer:"ก",
+   word:"outdoor", meaningTH:"กลางแจ้ง", hint:"สังเกตจาก: outside"},
+  {part:1, type:"define", prompt:"an activity you enjoy doing in your free time",
+   options:{"ก":"endurance","ข":"pastime","ค":"category","ง":"target"}, answer:"ข",
+   word:"pastime", meaningTH:"งานอดิเรก", hint:"สังเกตจาก: enjoy...in your free time"},
+  {part:1, type:"define", prompt:"very enthusiastic about something, often a hobby",
+   options:{"ก":"thrive","ข":"outdoor","ค":"avid","ง":"recent"}, answer:"ค",
+   word:"avid", meaningTH:"กระตือรือร้นมาก / คลั่งไคล้", hint:"สังเกตจาก: very enthusiastic"},
+  {part:1, type:"define", prompt:"an object that is shot at in some sports, like archery",
+   options:{"ก":"category","ข":"target","ค":"pastime","ง":"endurance"}, answer:"ข",
+   word:"target", meaningTH:"เป้าหมาย / เป้ายิง", hint:"สังเกตจาก: object shot at"},
+  {part:1, type:"define", prompt:"the ability to continue doing something difficult without giving up",
+   options:{"ก":"endurance","ข":"outdoor","ค":"thrive","ง":"avid"}, answer:"ก",
+   word:"endurance", meaningTH:"ความอดทน / ความอึด", hint:"สังเกตจาก: continue doing something difficult"},
+  {part:1, type:"define", prompt:"to become and continue to be successful, strong, healthy, etc.",
+   options:{"ก":"recent","ข":"category","ค":"thrive","ง":"target"}, answer:"ค",
+   word:"thrive", meaningTH:"เติบโตดี / ก้าวหน้า", hint:"สังเกตจาก: become successful/strong"},
+  {part:1, type:"define", prompt:"to notice or understand something you did not before",
+   options:{"ก":"doubt","ข":"realize","ค":"deny","ง":"imagine"}, answer:"ข",
+   word:"realize", meaningTH:"ตระหนัก / รู้ตัว", hint:"สังเกตจาก: notice or understand"},
+  {part:1, type:"define", prompt:"to not feel certain about something",
+   options:{"ก":"doubt","ข":"believe","ค":"appreciate","ง":"adore"}, answer:"ก",
+   word:"doubt", meaningTH:"สงสัย / ไม่แน่ใจ", hint:"สังเกตจาก: not feel certain"},
+  {part:1, type:"define", prompt:"to think that something is true",
+   options:{"ก":"deny","ข":"imagine","ค":"believe","ง":"interest"}, answer:"ค",
+   word:"believe", meaningTH:"เชื่อ", hint:"สังเกตจาก: think something is true"},
+  {part:1, type:"define", prompt:"to say that something is not true, or to not give permission",
+   options:{"ก":"deny","ข":"appreciate","ค":"adore","ง":"realize"}, answer:"ก",
+   word:"deny", meaningTH:"ปฏิเสธ", hint:"สังเกตจาก: say something is not true"},
+  {part:1, type:"define", prompt:"to create an idea in your mind",
+   options:{"ก":"interest","ข":"imagine","ค":"doubt","ง":"believe"}, answer:"ข",
+   word:"imagine", meaningTH:"จินตนาการ", hint:"สังเกตจาก: create idea in mind"},
+  {part:1, type:"define", prompt:"something you enjoy doing or experiencing",
+   options:{"ก":"adore","ข":"appreciate","ค":"interest","ง":"deny"}, answer:"ค",
+   word:"interest", meaningTH:"ความสนใจ", hint:"สังเกตจาก: enjoy doing/experiencing"},
+  {part:1, type:"define", prompt:"to feel thankful for someone or something",
+   options:{"ก":"realize","ข":"imagine","ค":"appreciate","ง":"doubt"}, answer:"ค",
+   word:"appreciate", meaningTH:"ซาบซึ้ง / เห็นคุณค่า", hint:"สังเกตจาก: feel thankful"},
+  {part:1, type:"define", prompt:"to love or have a good opinion of someone or something",
+   options:{"ก":"adore","ข":"believe","ค":"deny","ง":"interest"}, answer:"ก",
+   word:"adore", meaningTH:"รักมาก / เอ็นดู", hint:"สังเกตจาก: love or good opinion"},
+
+  // ---- Part 2: Sentence Completion (17-32) ----
+  {part:2, type:"blank", prompt:"I saw her {blank} post on Instagram that was uploaded just 5 minutes ago.",
+   options:{"ก":"recent","ข":"outdoor","ค":"avid","ง":"target"}, answer:"ก",
+   word:"recent", meaningTH:"โพสต์ล่าสุด", hint:"สังเกตจาก: just 5 minutes ago"},
+  {part:2, type:"blank", prompt:"Action, comedy, and horror are different {blank}s of movies.",
+   options:{"ก":"pastime","ข":"category","ค":"endurance","ง":"interest"}, answer:"ข",
+   word:"category", meaningTH:"ประเภทของหนัง", hint:"สังเกตจาก: Action, comedy, horror"},
+  {part:2, type:"blank", prompt:"Camping and playing football are {blank} activities because we play them outside.",
+   options:{"ก":"recent","ข":"outdoor","ค":"avid","ง":"target"}, answer:"ข",
+   word:"outdoor", meaningTH:"กิจกรรมกลางแจ้ง", hint:"สังเกตจาก: play them outside"},
+  {part:2, type:"blank", prompt:"Playing video games with my best friend is my favorite {blank} in my free time.",
+   options:{"ก":"category","ข":"endurance","ค":"pastime","ง":"target"}, answer:"ค",
+   word:"pastime", meaningTH:"งานอดิเรก", hint:"สังเกตจาก: in my free time"},
+  {part:2, type:"blank", prompt:"He is an {blank} fan of anime who watches every new episode and collects all the toys.",
+   options:{"ก":"outdoor","ข":"avid","ค":"recent","ง":"category"}, answer:"ข",
+   word:"avid", meaningTH:"แฟนคลับตัวยง", hint:"สังเกตจาก: watches every new episode"},
+  {part:2, type:"blank", prompt:"In archery class, the student aims the arrow directly at the center of the {blank}.",
+   options:{"ก":"target","ข":"pastime","ค":"endurance","ง":"category"}, answer:"ก",
+   word:"target", meaningTH:"เป้าธนู", hint:"สังเกตจาก: archery และ aims the arrow"},
+  {part:2, type:"blank", prompt:"Marathon runners need high {blank} to run for 42 kilometers without stopping.",
+   options:{"ก":"pastime","ข":"endurance","ค":"category","ง":"target"}, answer:"ข",
+   word:"endurance", meaningTH:"ความอึด / อดทน", hint:"สังเกตจาก: run for 42 kilometers"},
+  {part:2, type:"blank", prompt:"Plants need sunlight and water to grow and {blank} well in the garden.",
+   options:{"ก":"thrive","ข":"deny","ค":"doubt","ง":"realize"}, answer:"ก",
+   word:"thrive", meaningTH:"เติบโตงอกงาม", hint:"สังเกตจาก: grow well"},
+  {part:2, type:"blank", prompt:"I didn't {blank} that I left my phone on the bus until I checked my bag.",
+   options:{"ก":"adore","ข":"realize","ค":"deny","ง":"doubt"}, answer:"ข",
+   word:"realize", meaningTH:"เพิ่งนึกได้ / รู้ตัว", hint:"สังเกตจาก: until I checked my bag"},
+  {part:2, type:"blank", prompt:"I {blank} that he will win the race because he is hurt and cannot run fast.",
+   options:{"ก":"doubt","ข":"interest","ค":"pastime","ง":"category"}, answer:"ก",
+   word:"doubt", meaningTH:"สงสัย / ไม่เชื่อว่าจะ...", hint:"สังเกตจาก: hurt and cannot run fast"},
+  {part:2, type:"blank", prompt:"I {blank} that if you practice every day, you will get better.",
+   options:{"ก":"deny","ข":"believe","ค":"imagine","ง":"adore"}, answer:"ข",
+   word:"believe", meaningTH:"เชื่อว่า...", hint:"สังเกตจาก: practice = get better"},
+  {part:2, type:"blank", prompt:"He tried to {blank} breaking the glass, but everyone saw him do it.",
+   options:{"ก":"appreciate","ข":"adore","ค":"deny","ง":"thrive"}, answer:"ค",
+   word:"deny", meaningTH:"ปฏิเสธ", hint:"สังเกตจาก: everyone saw him ทำ"},
+  {part:2, type:"blank", prompt:"Can you {blank} living in a giant castle with 100 rooms?",
+   options:{"ก":"imagine","ข":"realize","ค":"doubt","ง":"deny"}, answer:"ก",
+   word:"imagine", meaningTH:"จินตนาการ", hint:"สังเกตจาก: นึกภาพปราสาท 100 ห้อง"},
+  {part:2, type:"blank", prompt:"Music is my main {blank}; I listen to songs every day after school.",
+   options:{"ก":"category","ข":"interest","ค":"pastime","ง":"target"}, answer:"ข",
+   word:"interest", meaningTH:"ความสนใจ", hint:"สังเกตจาก: listen to songs every day"},
+  {part:2, type:"blank", prompt:"I really {blank} your help with my math homework today. Thank you so much!",
+   options:{"ก":"appreciate","ข":"deny","ค":"doubt","ง":"imagine"}, answer:"ก",
+   word:"appreciate", meaningTH:"ขอบคุณ / ซาบซึ้ง", hint:"สังเกตจาก: Thank you so much"},
+  {part:2, type:"blank", prompt:"She {blank}s her new little kitten because it is super cute.",
+   options:{"ก":"adore","ข":"deny","ค":"doubt","ง":"thrive"}, answer:"ก",
+   word:"adore", meaningTH:"รัก / เอ็นดู", hint:"สังเกตจาก: super cute kitten"}
+];
+const TOTAL = QUESTIONS.length;
+const LETTERS = ["ก","ข","ค","ง"];
+
+/* ---------------- State ---------------- */
+let state = {
+  screen:"intro",
+  index:0,
+  answers:new Array(TOTAL).fill(null),
+  showReview:false
+};
+
+const app = document.getElementById("app");
+
+/* ---------------- Icons ---------------- */
+function checkSVG(){
+  return '<span class="mark"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M4 10.5 L8.2 15 L16 5"/></svg></span>';
+}
+function crossSVG(){
+  return '<span class="mark"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M5 5 L15 15 M15 5 L5 15"/></svg></span>';
+}
+
+/* ---------------- Helpers ---------------- */
+function escapeHTML(str){
+  return str.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+}
+function renderPrompt(q){
+  if(q.type === "define"){
+    return '<p class="q-text define">“' + escapeHTML(q.prompt) + '”</p>';
+  }
+  const parts = q.prompt.split("{blank}");
+  const safe = parts.map(escapeHTML);
+  return '<p class="q-text">' + safe.join('<span class="blank">______</span>') + '</p>';
+}
+function sectionLabel(part){
+  return part === 1
+    ? "ตอนที่ 1 · จับคู่ความหมาย (Matching Definitions)"
+    : "ตอนที่ 2 · เติมคำในช่องว่าง (Sentence Completion)";
+}
+function sectionInstruction(part){
+  return part === 1
+    ? "เลือกคำศัพท์ที่มีความหมายตรงกับคำอธิบายภาษาอังกฤษด้านล่าง"
+    : "เลือกคำที่เหมาะสมที่สุดเพื่อเติมประโยคให้สมบูรณ์";
+}
+function computeScore(upTo){
+  let s = 0;
+  for(let i=0;i<upTo;i++){
+    if(state.answers[i] === QUESTIONS[i].answer) s++;
+  }
+  return s;
+}
+
+/* ---------------- Renderers ---------------- */
+function renderIntro(){
+  app.innerHTML = `
+    <div class="intro-icon">📝</div>
+    <h1 class="title">แนวข้อสอบภาษาอังกฤษ Part A</h1>
+    <svg class="title-underline" viewBox="0 0 220 8" preserveAspectRatio="none">
+      <path d="M2 5 Q 60 1, 110 5 T 218 4"/>
+    </svg>
+    <p class="subtitle">Vocabulary &amp; Context · ระดับชั้นมัธยมศึกษาปีที่ 5<br>สำหรับทบทวนก่อนสอบกลางภาค</p>
+    <div class="meta-row">
+      <span class="meta-chip">32 ข้อ</span>
+      <span class="meta-chip">16 คำศัพท์</span>
+      <span class="meta-chip">2 ตอน</span>
+    </div>
+    <div class="instructions">
+      <b>ตอนที่ 1</b> — เลือกคำศัพท์ที่ตรงกับคำอธิบายภาษาอังกฤษ (16 ข้อ)<br>
+      <b>ตอนที่ 2</b> — เลือกคำเติมประโยคให้สมบูรณ์ (16 ข้อ)<br>
+      ตอบแล้วจะเห็นเฉลยและคำอธิบายภาษาไทยทันที
+    </div>
+    <div class="word-bank">
+      <b>คำศัพท์ในชุดนี้</b><br>
+      ${QUESTIONS.slice(0,16).map(q=>`<span class="word-chip">${q.word}</span>`).join("")}
+    </div>
+    <button class="btn btn-primary" data-action="start">เริ่มทำข้อสอบ →</button>
+  `;
+}
+
+function renderQuiz(){
+  const i = state.index;
+  const q = QUESTIONS[i];
+  const answered = state.answers[i];
+  const answeredCount = state.answers.filter(a=>a!==null).length;
+  const pct = Math.round((answeredCount/TOTAL)*100);
+
+  let optionsHTML = "";
+  LETTERS.forEach(letter=>{
+    const text = q.options[letter];
+    let cls = "opt";
+    let mark = "";
+    let disabledAttr = "";
+    if(answered){
+      disabledAttr = "disabled";
+      if(letter === q.answer){
+        cls += " correct";
+        mark = checkSVG();
+      } else if(letter === answered){
+        cls += " wrong-pick";
+        mark = crossSVG();
+      } else {
+        cls += " dim";
+      }
+    }
+    optionsHTML += `
+      <button class="${cls}" data-action="answer" data-letter="${letter}" ${disabledAttr}>
+        <span class="letter">${letter}</span>
+        <span>${escapeHTML(text)}</span>
+        ${mark}
+      </button>`;
+  });
+
+  let feedbackHTML = "";
+  if(answered){
+    const isCorrect = answered === q.answer;
+    feedbackHTML = `
+      <div class="feedback ${isCorrect ? "is-correct" : "is-wrong"}">
+        <div class="fb-status">${isCorrect ? "✓ ถูกต้อง!" : "✗ ยังไม่ถูก คำตอบที่ถูกคือ " + q.answer + ". " + q.word}</div>
+        <span class="fb-word">${q.word}</span>
+        <p class="fb-meaning">${q.meaningTH}</p>
+        <p class="fb-hint">${q.hint}</p>
+      </div>
+      <div class="next-wrap">
+        <button class="btn btn-primary" data-action="next">${i === TOTAL-1 ? "ดูผลคะแนน →" : "ข้อถัดไป →"}</button>
+      </div>
+    `;
+  }
+
+  app.innerHTML = `
+    <div class="quiz-top">
+      <div class="eyebrow">${sectionLabel(q.part)}</div>
+      <div class="quiz-sub">${sectionInstruction(q.part)}</div>
+      <div class="progress-row">
+        <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+        <div class="progress-count">${i+1} / ${TOTAL}</div>
+      </div>
+    </div>
+    <div class="q-block">
+      <div class="q-head">
+        <span class="q-number">${i+1}</span>
+        ${renderPrompt(q)}
+      </div>
+      <div class="options">${optionsHTML}</div>
+      ${feedbackHTML}
+    </div>
+  `;
+}
+
+function renderTransition(){
+  const score1 = computeScore(16);
+  app.innerHTML = `
+    <div style="text-align:center;padding:10px 0;">
+      <div class="transition-emoji">🎉</div>
+      <div class="eyebrow" style="justify-content:center;">จบตอนที่ 1 แล้ว</div>
+      <div class="transition-score">${score1} / 16</div>
+      <p class="muted" style="font-size:14px;line-height:1.6;">
+        คะแนนตอนที่ 1: จับคู่ความหมาย<br>
+        ต่อไปเป็น <b>ตอนที่ 2 · เติมคำในช่องว่าง</b> อีก 16 ข้อ
+      </p>
+      <button class="btn btn-primary" style="margin-top:14px;" data-action="continue-part2">ไปต่อตอนที่ 2 →</button>
+    </div>
+  `;
+}
+
+function renderResult(){
+  const score1 = computeScore(16);
+  const score2 = computeScore(32) - score1;
+  const total = score1 + score2;
+  const pct = Math.round((total/TOTAL)*100);
+
+  let comment;
+  if(pct >= 90) comment = "ยอดเยี่ยมมาก! คำศัพท์ชุดนี้แม่นแล้ว พร้อมสอบกลางภาคแน่นอน 🎉";
+  else if(pct >= 70) comment = "ดีมาก! เหลืออีกไม่กี่คำ ลองทบทวนข้อที่ตอบผิดอีกครั้งนะ";
+  else if(pct >= 50) comment = "พอใช้ได้ ลองกลับไปทบทวนคำศัพท์ที่ยังไม่แม่นอีกรอบ";
+  else comment = "ยังไม่แม่นเท่าไหร่ ลองทบทวนความหมายคำศัพท์แล้วกลับมาทำใหม่นะ สู้ๆ!";
+
+  let reviewHTML = "";
+  QUESTIONS.forEach((q,idx)=>{
+    const userAns = state.answers[idx];
+    const correct = userAns === q.answer;
+    reviewHTML += `
+      <div class="review-item ${correct ? "" : "wrong"}">
+        <div class="ri-top">
+          <span class="ri-word">${idx+1}. ${q.word}</span>
+          <span class="ri-status">${correct ? "✓ ถูก" : "✗ ผิด (ตอบ " + (userAns || "-") + ")"}</span>
+        </div>
+        <div class="ri-detail">${q.meaningTH} — ${q.hint}</div>
+      </div>
+    `;
+  });
+
+  app.innerHTML = `
+    <div class="eyebrow" style="justify-content:center;">ผลคะแนนรวม</div>
+    <div class="ring" style="background:conic-gradient(var(--red) ${pct}%, rgba(38,38,64,0.1) 0);">
+      <div class="ring-inner">
+        <div class="ring-num">${total}</div>
+        <div class="ring-den">จาก ${TOTAL} ข้อ</div>
+      </div>
+    </div>
+    <p class="result-comment">${comment}</p>
+    <div class="breakdown">
+      <div class="bd-card">
+        <div class="bd-label">ตอนที่ 1 · ความหมาย</div>
+        <div class="bd-score">${score1}/16</div>
+      </div>
+      <div class="bd-card">
+        <div class="bd-label">ตอนที่ 2 · เติมคำ</div>
+        <div class="bd-score">${score2}/16</div>
+      </div>
+    </div>
+    <button class="review-toggle" data-action="toggle-review">
+      <span>${state.showReview ? "ซ่อน" : "ดู"}เฉลยทั้งหมด 32 ข้อ</span>
+      <span>${state.showReview ? "▲" : "▼"}</span>
+    </button>
+    ${state.showReview ? `<div class="review-list">${reviewHTML}</div>` : ""}
+    <div class="footer-actions">
+      <button class="btn btn-primary" data-action="restart">ทำข้อสอบใหม่อีกครั้ง ↺</button>
+    </div>
+  `;
+}
+
+function render(){
+  if(state.screen === "intro") renderIntro();
+  else if(state.screen === "quiz") renderQuiz();
+  else if(state.screen === "transition") renderTransition();
+  else if(state.screen === "result") renderResult();
+}
+
+/* ---------------- Events ---------------- */
+app.addEventListener("click", (e)=>{
+  const el = e.target.closest("[data-action]");
+  if(!el) return;
+  const action = el.dataset.action;
+
+  if(action === "start"){
+    state.screen = "quiz";
+    state.index = 0;
+    render();
+  } else if(action === "answer"){
+    if(state.answers[state.index] !== null) return;
+    state.answers[state.index] = el.dataset.letter;
+    render();
+  } else if(action === "next"){
+    if(state.index === 15){
+      state.screen = "transition";
+    } else if(state.index === TOTAL-1){
+      state.screen = "result";
+    } else {
+      state.index++;
+    }
+    render();
+  } else if(action === "continue-part2"){
+    state.index = 16;
+    state.screen = "quiz";
+    render();
+  } else if(action === "toggle-review"){
+    state.showReview = !state.showReview;
+    render();
+  } else if(action === "restart"){
+    state = {screen:"intro", index:0, answers:new Array(TOTAL).fill(null), showReview:false};
+    render();
+  }
+  document.getElementById("page").scrollIntoView({behavior:"smooth", block:"start"});
+});
+
+render();
+</script>
+</body>
+</html>
